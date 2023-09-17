@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BrandProps } from "../types";
 import service from "../services/BrandService";
 
-function Brand() {
+export default function Brand() {
   const [name, setName] = useState("");
   const [brands, setBrands] = useState([] as BrandProps[]);
 
@@ -71,4 +71,4 @@ function Brand() {
     </>
   );
 }
-export default Brand;
+

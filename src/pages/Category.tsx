@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CategoryProps } from "../types";
 import service from "../services/CategoryService";
 
-function Category() {
+export default function Category() {
   const [name, setName] = useState("");
   const [categories, setCategories] = useState([] as CategoryProps[]);
 
@@ -71,4 +71,4 @@ function Category() {
     </>
   );
 }
-export default Category;
+
