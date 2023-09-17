@@ -1,21 +1,24 @@
 export interface BikeProps {
-    id: number;
+    id?: number;
     color: string;
     size: string;
     material: string;
     gender: string;
     speedkit: string;
-    rim: number;
-    suspension: boolean;
+    rim: string;
+    suspension: string;
     description: string;
     hourlyvalue: string;
     dailyvalue: string;
-    latitude: number;
-    longitude: number;
-    user: UserProps;
-    brand: BrandProps;
-    category: CategoryProps;
-    photos: PhotoProps[];
+    latitude: string;
+    longitude: string;
+    user?: UserProps;
+    brand?: BrandProps;
+    category?: CategoryProps;
+    photos?: PhotoProps[];
+    idbrand?: string;
+    idcategory?: string;
+    iduser?: string;
 }
 
 export interface BrandProps {

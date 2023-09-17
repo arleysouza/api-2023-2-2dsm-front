@@ -24,7 +24,6 @@ export default function Category() {
     e.preventDefault();
     if (name && name.trim() !== "") {
       const res: any = await service.post(name.trim());
-      console.log(res);
       if (res.error) {
         alert(res.error);
       } 

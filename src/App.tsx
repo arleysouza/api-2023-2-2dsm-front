@@ -1,6 +1,7 @@
 import Bike from "./pages/Bike";
 import Brand from "./pages/Brand";
 import Category from "./pages/Category";
+import Photo from "./pages/Photo";
 import User from "./pages/User";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Category />
       <User />
       <Bike />
+      <Photo />
     </div>
   );
 }

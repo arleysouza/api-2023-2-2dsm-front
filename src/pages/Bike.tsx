@@ -13,6 +13,7 @@ export default function Bike() {
   const [speedkit, setSpeedkit] = useState("");
   const [rim, setRim] = useState("");
   const [description, setDescription] = useState("");
+  const [suspension, setSuspension] = useState("");
   const [hourlyvalue, setHourlyvalue] = useState("");
   const [dailyvalue, setDailyvalue] = useState("");
   const [latitude, setLatitude] = useState("");
@@ -59,8 +60,42 @@ export default function Bike() {
   const save = async (e: any) => {
     //evita o evento natural que é o submit do formulário
     e.preventDefault();
-    if (color && color.trim() !== "") {
-      alert("Não implementado");
+    if (
+      color && color.trim() !== "" && 
+      size && size.trim() !== "" && 
+      material && material.trim() !== "" && 
+      gender && gender.trim() !== "" && 
+      speedkit && speedkit.trim() !== "" && 
+      rim && rim.trim() !== "" && 
+      description && description.trim() !== "" && 
+      hourlyvalue && hourlyvalue.trim() !== "" && 
+      dailyvalue && dailyvalue.trim() !== "" && 
+      idbrand && idbrand.trim() !== "" && 
+      idcategory && idcategory.trim() !== "" && 
+      iduser && iduser.trim() !== ""
+    ) {
+      const res: any = await service.post({
+        color: color.trim(),
+        size: size.trim(),
+        material,
+        gender,
+        speedkit: speedkit.trim(),
+        rim: rim.trim(),
+        suspension,
+        description: description.trim(),
+        hourlyvalue: hourlyvalue.trim(),
+        dailyvalue: dailyvalue.trim(),
+        latitude: latitude.trim(),
+        longitude: longitude.trim(),
+        idbrand,
+        idcategory,
+        iduser
+      });
+      if (res.error) {
+        alert(res.error);
+      } else {
+        load();
+      }
     }
   };
 
@@ -83,14 +118,18 @@ export default function Bike() {
         </div>
         <div>
           <label>Material</label>
-          <input value={material} onChange={(e) => setMaterial(e.target.value)} />
+          <select value={material} onChange={(e) => setMaterial(e.target.value)}>
+            <option value="alumínio" defaultChecked>Alumínio</option>
+            <option value="carbono">Carbono</option>
+            <option value="ferro">Ferro</option>
+          </select>
         </div>
         <div>
           <label>Gênero</label>
           <select value={gender} onChange={(e) => setGender(e.target.value)}>
             <option value="feminino">Feminino</option>
             <option value="masculino">Masculino</option>
-            <option value="unissex">Unissex</option>
+            <option value="unissex" defaultChecked>Unissex</option>
           </select>
         </div>
         <div>
@@ -100,6 +139,13 @@ export default function Bike() {
         <div>
           <label>Aro</label>
           <input value={rim} onChange={(e) => setRim(e.target.value)} />
+        </div>
+        <div>
+          <label>Suspensão</label>
+          <select value={suspension} onChange={(e) => setSuspension(e.target.value)}>
+            <option value="true" defaultChecked>Sim</option>
+            <option value="false">Não</option>
+          </select>
         </div>
         <div>
           <label>Descrição</label>
@@ -160,6 +206,7 @@ export default function Bike() {
             <th>Gênero</th>
             <th>Transmissão</th>
             <th>Aro</th>
+            <th>Suspensão</th>
             <th>Descrição</th>
             <th>Hora</th>
             <th>Diária</th>
@@ -181,16 +228,17 @@ export default function Bike() {
               <td>{item.gender}</td>
               <td>{item.speedkit}</td>
               <td>{item.rim}</td>
+              <td>{item.suspension?"sim":"não"}</td>
               <td>{item.description}</td>
               <td>{item.hourlyvalue}</td>
               <td>{item.dailyvalue}</td>
               <td>{item.latitude}</td>
               <td>{item.longitude}</td>
-              <td>{item.user.alias}</td>
-              <td>{item.brand.name}</td>
-              <td>{item.category.name}</td>
+              <td>{item.user?.alias}</td>
+              <td>{item.brand?.name}</td>
+              <td>{item.category?.name}</td>
               <td>
-                {item.photos.map((item) => (
+                {item.photos?.map((item) => (
                   <a href={`http://localhost:3001/foto/public/${item.filename}`} key={item.id} target="blank">
                     Foto
                   </a>

@@ -34,7 +34,6 @@ export default function User() {
         mail: mail.trim(),
         phone: phone.trim(),
       });
-      console.log(res);
       if (res.error) {
         alert(res.error);
       } else {
