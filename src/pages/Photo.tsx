@@ -43,8 +43,7 @@ export default function Photo() {
 
   const reset = (e: any) => {
     e.preventDefault();
-    /*setAlias("");
-    setMail("");*/
+    setIdbike("");
     setFile(null);
   };
 
